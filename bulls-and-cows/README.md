@@ -1,7 +1,7 @@
 --- 
 
 # Bulls and cows
----
+
 
 ### Overview
 
