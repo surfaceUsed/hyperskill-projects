@@ -85,7 +85,7 @@ public class Main {
         calculateTotalIncome();
     }
 
-    private static void precentStatistics() {
+    private static void presentStatistics() {
 
         String stat = String.format("""
                 Number of purchased tickets: %d
@@ -98,30 +98,34 @@ public class Main {
 
     private static void pickSeat() {
 
-        while (true) {
+        if (currentIncome != totalIncome) {
+            while (true) {
 
-            System.out.println("Enter a row number:");
-            int rowNumb = scanner.nextInt();
-            System.out.println("Enter a seat number in that row:");
-            int seatNumb = scanner.nextInt();
+                System.out.println("Enter a row number:");
+                int rowNumb = scanner.nextInt();
+                System.out.println("Enter a seat number in that row:");
+                int seatNumb = scanner.nextInt();
 
-            if (!checkInput(rowNumb, seatNumb)) {
-                System.out.println("Wrong input!");
-
-            } else {
-
-                if (isEmpty(rowNumb, seatNumb)) {
-                    cinemaView[rowNumb - 1][seatNumb - 1] = BOOKED;
-                    totalBookings++;
-                    currentIncome += calculatePrice(rowNumb);
-                    System.out.println("\nTicket price: $" + calculatePrice(rowNumb) + "\n");
-                    return;
+                if (!checkInput(rowNumb, seatNumb)) {
+                    System.out.println("Wrong input!");
 
                 } else {
 
-                    System.out.println("That ticket has already been purchased!");
+                    if (isEmpty(rowNumb, seatNumb)) {
+                        cinemaView[rowNumb - 1][seatNumb - 1] = BOOKED;
+                        totalBookings++;
+                        currentIncome += calculatePrice(rowNumb);
+                        System.out.println("\nTicket price: $" + calculatePrice(rowNumb) + "\n");
+                        return;
+
+                    } else {
+
+                        System.out.println("That ticket has already been purchased!");
+                    }
                 }
             }
+        } else {
+            System.out.println("No seats available.");
         }
     }
 
