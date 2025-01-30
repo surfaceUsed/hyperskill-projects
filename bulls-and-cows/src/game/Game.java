@@ -34,8 +34,6 @@ public class Game {
             String guess = this.scanner.nextLine();
             checkNumbers(guess);
         }
-
-        this.scanner.close();
     }
 
     private String printIntervals() {
@@ -78,8 +76,11 @@ public class Game {
                 }
             }
 
-            checkWinner();
+        } else {
+            System.out.println("The input is not the same length as the secret code.");
         }
+
+        checkWinner();
     }
 
     private void checkCow(int index, String input) {

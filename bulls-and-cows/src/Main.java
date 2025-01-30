@@ -30,7 +30,6 @@ public class Main {
                     if (isInsideInterval(Integer.parseInt(numberOfSymbols))) {
 
                         new Game(Integer.parseInt(codeLength), Integer.parseInt(numberOfSymbols)).play();
-                        scanner.close();
 
                     } else {
 
