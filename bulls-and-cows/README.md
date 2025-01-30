@@ -60,12 +60,13 @@ java -cp out Main
 ### Project structure
 ```sh
 bulls-and-cows/
-└── src/
-    ├── Main.java
-    └── game/
-        ├── Game.java
-        └── util/
-            └── RandomStringGenerator.java
+├── src/
+│   ├── Main.java
+│   ├── game/
+│   │   ├── Game.java
+│   │   └── util/
+│   │       └── RandomStringGenerator.java
+├── README.md
 ```
 
 ### Code breakdown
