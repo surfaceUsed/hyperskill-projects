@@ -18,9 +18,6 @@ If the cinema has more than 60 seats:
 Seats in the first half of the cinema (front rows) cost $10.
 Seats in the second half (back rows) cost $8.
 
-### System requirements
-- Java version 11 (LTS) or later.
-
 ### How to run
 
 **Software requierments**
