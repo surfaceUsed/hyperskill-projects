@@ -55,3 +55,6 @@ Each folder contains:
 - ❌⭕ **Tic-Tac-Toe with AI**  
 
 ---
+
+## License
+This project is open source. Feel free to use it however you like.
