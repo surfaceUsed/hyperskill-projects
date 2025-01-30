@@ -18,29 +18,40 @@ If the cinema has more than 60 seats:
 Seats in the first half of the cinema (front rows) cost $10.
 Seats in the second half (back rows) cost $8.
 
+### System requirements
+- Java version 11 (LTS) or later.
+
 ### How to run
+
+**Software requierments**
+
+- Java 8 or later.
+
+**Installation**
+
+
 1. Clone the repository or download the source code
-```sh
+```bash
 git clone https://github.com/surfaceUsed/hyperskill-projects.git
 ```
 
 2. Navigate to the project directory
-```sh
+```bash
 cd hyperskill-projects/cinema-room-manager
 ```
 
 3. Compile the code
-```sh
+```bash
 javac -d out src/Main.java
 ```
 
 4. Run the application
-```sh
+```bash
 java -cp out Main
 ```
 
 ### Project structure
-```sh
+```plaintext
 cinema-room-manager/
 ├── src/
 │   |── Main.java 
@@ -48,7 +59,7 @@ cinema-room-manager/
 ```
 
 ### Run example
-```sh
+```plaintext
 Enter the number of rows:
 10
 Enter the number of seats in each row:

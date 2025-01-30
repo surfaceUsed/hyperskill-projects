@@ -1,64 +1,32 @@
---- 
+---
 
-# Bulls and cows
+# Bulls and Cows
 
+## Overview
 
-### Overview
+**Bulls and Cows** is a console-based game written in Java where the player tries to guess a secret code consisting of unique digits and/or letters. The game provides feedback in terms of "bulls" and "cows" to guide the player towards the correct answer.
 
-Bulls and Cows is a console-based game written in Java where the player tries to guess a secret code consisting 
-of unique digits and/or letters. The game provides feedback in terms of "bulls" and "cows" to guide the player 
-towards the correct answer.
+- **Bulls**: Correct symbols in the correct position.
+- **Cows**: Correct symbols in the wrong position.
 
-Bulls: Correct symbols in the correct position.
-
-Cows: Correct symbols in the wrong position.
-
-### Features
+## Features
 
 - Allows the user to specify the length of the secret code.
-
-- The code consists of numbers '0-9' and letters 'a-z', no duplicates.
-
+- The code consists of numbers '0-9' and letters 'a-z', with no duplicates.
 - Provides detailed feedback on each guess.
-
 - Uses a fair randomization process to generate secret codes.
 
-### How to play
+## How to Play
 
-- Run the program.
+1. Run the program.
+2. Enter the desired length of the secret code.
+3. Enter the number of possible unique symbols.
+4. Try to guess the secret code based on the feedback provided.
+5. The game continues until the correct code is guessed.
 
-- Enter the desired length of the secret code.
+## Project Structure
 
-- Enter the number of possible unique symbols.
-
-- Try to guess the secret code based on the feedback provided.
-
-- The game continues until the correct code is guessed.
-
-### Running the application
-
-1. Clone the repository or download the source code
-```sh
-git clone https://github.com/surfaceUsed/hyperskill-projects.git
-```
-
-2. Navigate to the project directory
-```sh
-cd hyperskill-projects/bulls-and-cows
-```
-
-3. Compile the code
-```sh
-javac -d out src/Main.java src/game/Game.java src/game/util/RandomStringGenerator.java
-```
-
-4. Run the application
-```sh
-java -cp out Main
-```
-
-### Project structure
-```sh
+```plaintext
 bulls-and-cows/
 ├── src/
 │   ├── Main.java
@@ -69,19 +37,49 @@ bulls-and-cows/
 ├── README.md
 ```
 
-### Code breakdown
-
-#### Main.java
+**Main.java**
 The entry point of the game. It handles user input for code length and possible symbols and then starts the game.
 
-#### Game.java
+**Game.java**
 Contains the logic of the game. It generates a secret code and compares it against the user's guesses. The game continues until the player correctly guesses the code.
 
-#### RandomStringGenerator.java
+**RandomStringGenerator.java**
 A utility class used to generate random strings for the secret code using the specified number of symbols ignoring duplicates.
 
-```sh
- **Example run**
+## Running the Application
+
+**Software requirements**
+
+- Java 8 or later.
+
+**Installation**
+
+1. Clone the repository or download the source code:
+
+    ```bash
+    git clone https://github.com/surfaceUsed/hyperskill-projects.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd hyperskill-projects/bulls-and-cows
+    ```
+
+3. Compile the code:
+
+    ```bash
+    javac -d out src/Main.java src/game/Game.java src/game/util/RandomStringGenerator.java
+    ```
+
+4. Run the application:
+
+    ```bash
+    java -cp out Main
+    ```
+
+### Example run
+```plaintext
 Input the length of the secret code:
 4
 Input the number of possible symbols in the code:
