@@ -101,10 +101,9 @@ public class Controller {
             this.algorithmValue = "shift";
         }
 
-        // If user input doesn't contain '-mode', get input text from a file.
+        // If user input doesn't contain '-data', get input text from a file.
         if (!isValueExists(DATA)) {
 
-            // TODO: Insert correct path to file "..src/application/data/fileName".
             try (BufferedReader br = new BufferedReader(new FileReader(this.inValue))) {
 
                 this.dataValue = br.readLine();
@@ -135,7 +134,6 @@ public class Controller {
             // else it will be written to the console.
             if (isValueExists(OUT)) {
 
-                // TODO: Insert correct path to file "..src/application/data/fileName".
                 try (BufferedWriter output = new BufferedWriter(new FileWriter(this.outValue))) {
 
                     output.write(encryptedText);
