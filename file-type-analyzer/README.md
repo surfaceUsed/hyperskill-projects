@@ -1,7 +1,7 @@
 ---
 # File type analyzer
 
-The application is is used for determening the type of file based on their byte content. It scans files in a given directory and matches their byte signatures against a predefined pattern database (`patterns.db`). The program uses the [Knuth-Morris-Pratt (KMP) algorithm](https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/) to efficientry search for patterns in a file content, and identifies the most relevant file type based on a priority ranking. 
+The application is is used for determening the type of file based on their byte content. It scans files in a given directory and matches their byte signatures against a predefined pattern database (`patterns.db`). The program uses the [Knuth-Morris-Pratt (KMP) algorithm](https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/) to efficiently search for patterns in a file content, and identifies the most relevant file type based on a priority ranking. 
 
 ### Features
 
@@ -83,7 +83,7 @@ Entry point of the application. Calls and manages the execution of the file-type
 
 **System package** (Core logic)
 
-- `FileAnaluzer.java`:
+- `FileAnalyzer.java`:
 
    - Reads the `patterns.db` file and returns its content as a `String[]` using `patternList()`.
     
@@ -121,7 +121,7 @@ Displays the results on the console in the `init()` method.
 
    - Returns the starting index of the first occurrence of the pattern in the text. If no match is found, it returns `-1`.
 
-   - Utilizes the **longest prefix-sufix (LPS) array to optimize the search and avoid redundant comparisons, acheiving efficient matching. 
+   - Utilizes the **longest prefix-sufix (LPS)** array to optimize the search and avoid redundant comparisons, acheiving efficient matching. 
 
 - `PatternFileMapper.java`:
 
@@ -162,7 +162,7 @@ mvn clean
 mvn compile
 mvn package
 ```
-This will create an executable .jar file in the target/ directory.
+This will create an executable .jar file in the `target/` directory.
 
 **Compile as standard Java application**
 
