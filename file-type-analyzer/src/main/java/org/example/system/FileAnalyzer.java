@@ -21,16 +21,16 @@ public class FileAnalyzer {
         this.patternFile = patternFile;
     }
 
-    private String[] patternList() {
+    private String[] patternList() throws IOException {
 
-        byte[] byteFile = new byte[(int) this.patternFile.length()];
+        byte[] byteFile;
 
         try (BufferedInputStream input = new BufferedInputStream(new FileInputStream(this.patternFile))) {
 
-            input.read(byteFile, 0, byteFile.length);
+            byteFile = input.readAllBytes();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new IOException("Failed to parse file '" + this.patternFile.getName() + "': " + e.getMessage());
         }
 
         String byteString = new String(byteFile);
@@ -38,7 +38,9 @@ public class FileAnalyzer {
         return byteString.split("[\\n]");
     }
 
-    public void init() {
+    public void init() throws IOException {
+
+        String[] patternList = patternList();
 
         List<FileSession> sessions = new ArrayList<>();
 
@@ -50,24 +52,29 @@ public class FileAnalyzer {
 
                 for (File f : files) {
                     if (f.isFile()) {
-                        sessions.add(new FileSession(f, patternList()));
+                        sessions.add(new FileSession(f, patternList));
                     }
                 }
 
-                ExecutorService executor = Executors.newFixedThreadPool(10);
-
-                try {
-
-                    for (Future<String> future : executor.invokeAll(sessions)) {
-                        System.out.println(future.get());
-                    }
-
-                } catch (InterruptedException | ExecutionException e) {
-                    System.out.println(e.getMessage());
-                } finally {
-                    executor.shutdown();
-                }
+                executeSessions(sessions);
+            } else {
+                System.out.println("The directory '" + this.fileDirectory.getName() + "' is empty.");
             }
+        } else {
+            System.out.println("The directory argument '" + this.fileDirectory.getPath() + "' is not a valid directory.");
+        }
+    }
+
+    private void executeSessions(List<FileSession> sessions) {
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        try {
+            for (Future<String> future : executor.invokeAll(sessions)) {
+                System.out.println(future.get());
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            System.out.println("Something went wrong when executing file analyze session: " + e.getMessage());
+        } finally {
+            executor.shutdown();
         }
     }
 }

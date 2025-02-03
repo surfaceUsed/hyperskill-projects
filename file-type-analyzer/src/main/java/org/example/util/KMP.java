@@ -4,6 +4,14 @@ public final class KMP {
 
     private KMP() {}
 
+    /**
+     *
+     * Time complexity: O(n + m).
+     *
+     * KMP algorithm.
+     *
+     * Returns the index of the start of a matching pattern. If no match is found, return -1.
+     */
     public static int kmp(String text, String pattern) {
 
         int i = 0, j = 0, noMatch = -1;
@@ -44,6 +52,13 @@ public final class KMP {
         return noMatch;
     }
 
+    /**
+     *
+     * Time complexity: O(m).
+     *
+     * Takes a char-array of a specific pattern (can be "%PFD-", "pmview" etc), and returns an array that
+     * represents the lengths and positions of the longest prefixes that are also suffices for the "patternArray".
+     */
     private static int[] longestPrefixSuffix(char[] patternArray) {
 
         int[] lps = new int[patternArray.length];

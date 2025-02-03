@@ -1,7 +1,6 @@
 package org.example.util;
 
 import org.example.system.FileTypeInformation;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

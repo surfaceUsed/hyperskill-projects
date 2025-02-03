@@ -36,18 +36,12 @@ class FileSession implements Callable<String> {
         return this.file.getName() + ": " + "Unknown file type";
     }
 
-    private byte[] readFile() {
-
-        byte[] byteFile = new byte[(int) this.file.length()];
+    private byte[] readFile() throws IOException {
 
         try (BufferedInputStream input = new BufferedInputStream(new FileInputStream(this.file))) {
 
-            input.read(byteFile, 0, byteFile.length);
+            return input.readAllBytes();
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
-
-        return byteFile;
     }
 }
