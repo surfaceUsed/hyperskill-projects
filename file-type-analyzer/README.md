@@ -1,7 +1,9 @@
 ---
 # File type analyzer
 
-The application is is used for determening the type of file based on their byte content. It scans files in a given directory and matches their byte signatures against a predefined pattern database (`patterns.db`). The program uses the [Knuth-Morris-Pratt (KMP) algorithm](https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/) to efficiently search for patterns in a file content, and identifies the most relevant file type based on a priority ranking. 
+The application is is used for determening the type of file based on their byte content. It scans files in a given directory and matches their byte 
+signatures against a predefined pattern database (`patterns.db`). The program uses the [Knuth-Morris-Pratt (KMP) 
+algorithm](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) to efficiently search for patterns in a file content, and identifies the most relevant file type based on a priority ranking. 
 
 ### Features
 
