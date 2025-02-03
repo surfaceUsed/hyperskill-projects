@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- Build section goes here -->
     <build>
         <plugins>
             <plugin>
@@ -24,7 +23,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.example.Main</mainClass> <!-- Update with your main class -->
+                            <mainClass>org.example.Main</mainClass> 
                         </manifest>
                     </archive>
                 </configuration>
