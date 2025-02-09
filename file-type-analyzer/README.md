@@ -178,12 +178,12 @@ After the run script, remember to include the path to a pre define pattern file,
 - **Maven**:
 
 ```plaintext
-java -jar target/file-type-analyzer-1.0.jar "path_to_pattern_file" "path_to_directory"
+java -jar target/file-type-analyzer-1.0.jar "path_to_directory" "path_to_pattern_file"
 ```
 - **Java**
 
 ```plaintext
-java -cp out org/example/Main "path_to_pattern_file" "path_to_directory"
+java -cp out org/example/Main "path_to_directory" "path_to_pattern_file"
 ```
 
 **Example run** (using paths from content root to test directory `data/` and `patterns.db` as command-line inputs): 
