@@ -61,7 +61,6 @@ This module is responsible for sending requests to the server, and handling resp
 This module processes client requests, manages the JSON database, and handles file operations. The server application serves 
 as a remote datbase storage, and listens to incoming client requests, processes them, and sends back an appropriate respons. 
 The server provides basic CRUD-operations.
-Closing down the server can only be initiated when an 
 
 - `resources/database/db.json` - The main JSON database file.
 
