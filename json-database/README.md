@@ -220,10 +220,10 @@ To get a nested value (e.g., the name inside person):
 ```json
 {
   "person": {
-    "name": "Elon Musk",
+    "name": "Bill Gates",
     "car": {
-      "model": "Tesla Roadster",
-      "year": "2018"
+      "model": "Porsche 911",
+      "year": "2010"
     }
   }
 }
@@ -232,7 +232,7 @@ To get a nested value (e.g., the name inside person):
 - The server returns:
 
 ```json
-{"response": "OK", "value": "Elon Musk"}
+{"response": "OK", "value": "Bill Gates"}
 ```
 
 #### **Deleting a value**
@@ -259,7 +259,7 @@ To get a nested value (e.g., the name inside person):
 
 **How It Works:**
 
-- Updates `"person → name"` from `"Elon Musk"` to `"Steve Jobs"`.
+- Updates `"person → name"` from `"Bill Gates"` to `"Steve Jobs"`.
 
 **JSON Sent to Server:**
 
