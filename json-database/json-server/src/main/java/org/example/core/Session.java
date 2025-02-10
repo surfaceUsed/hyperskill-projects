@@ -1,7 +1,7 @@
 package org.example.core;
 
 import org.example.datasource.Datasource;
-import org.example.handler.ClientRequestHandler;
+import org.example.handler.RequestHandler;
 import org.example.util.Request;
 import org.example.util.Response;
 import java.io.DataInputStream;
@@ -25,7 +25,7 @@ public class Session implements Runnable {
 
         Request fromClient = Request.fromJson(input.readUTF());
 
-        Response response = ClientRequestHandler.handleRequest(fromClient, this.datasource);
+        Response response = RequestHandler.handleRequest(fromClient, this.datasource);
 
         output.writeUTF(response.toJson());
 
