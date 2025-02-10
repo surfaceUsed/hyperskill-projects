@@ -1,16 +1,13 @@
-package org.example.clientApp.client.util;
+package org.example.util;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.google.gson.Gson;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public final class CommandLineParser {
-
-    private final static String PATH = "src/main/java/org/example/application/clientApp/client/data";
 
     @Parameter(names = "-t", description = "Type of client request")
     private String type;
@@ -47,6 +44,6 @@ public final class CommandLineParser {
     }
 
     private String readFile() throws IOException {
-        return new String(Files.readAllBytes(Paths.get(PATH + File.separator + this.jsonFile)));
+        return new String(Files.readAllBytes(Paths.get(this.jsonFile)));
     }
 }
