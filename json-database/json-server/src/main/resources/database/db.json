@@ -1,0 +1,15 @@
+{
+  "type": "set",
+  "key": "person",
+  "value": {
+    "name": "Bill Gates",
+    "car": {
+      "model": "Porsche 911",
+      "year": "2019"
+    },
+    "rocket": {
+      "name": "Falcon 9",
+      "launches": "87"
+    }
+  }
+}
