@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class IOUtil {
 
-    private static final String SHOPPING_LIST_DIRECTORY = "shoppingList"; // Writes to default directory "shoppingList/" in root folder.
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String writeInput() {
