@@ -1,4 +1,4 @@
-package org.example.datasource.dataUtil;
+package org.example.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

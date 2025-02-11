@@ -1,10 +1,10 @@
-package org.example.datasource.dao;
+package org.example.dao;
 
-import org.example.datasource.dataUtil.ConnectionManager;
-import org.example.datasource.dataUtil.IngredientIDGenerator;
-import org.example.datasource.dataUtil.MealIDGenerator;
 import org.example.entity.Meal;
 import org.example.entity.MealDayPlan;
+import org.example.util.ConnectionManager;
+import org.example.util.IngredientIDGenerator;
+import org.example.util.MealIDGenerator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,15 +19,15 @@ import java.util.List;
  *
  */
 
-public class MealDAOImpl implements MealDAO {
+public class MealsDatabaseDAOImpl implements MealsDatabaseDAO {
 
     private static final String INSERT_INTO_TABLE = "INSERT INTO ";
     private final static Connection CONNECTION = ConnectionManager.getConnection();
-    private final static MealDAO INSTANCE = new MealDAOImpl();
+    private final static MealsDatabaseDAO INSTANCE = new MealsDatabaseDAOImpl();
 
-    private MealDAOImpl() {}
+    private MealsDatabaseDAOImpl() {}
 
-    public static MealDAO getInstance() {
+    public static MealsDatabaseDAO getInstance() {
         return INSTANCE;
     }
 

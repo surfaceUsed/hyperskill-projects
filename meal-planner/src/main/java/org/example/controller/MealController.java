@@ -1,31 +1,26 @@
 package org.example.controller;
 
+import org.example.dao.MealsDatabaseDAOImpl;
 import org.example.datasource.Datasource;
-import org.example.datasource.MealsDB;
-import org.example.datasource.dao.MealDAOImpl;
-import org.example.datasource.dataUtil.ConnectionManager;
+import org.example.datasource.MealsDatabase;
 import org.example.entity.Meal;
 import org.example.entity.MealDayPlan;
 import org.example.enums.ApplicationState;
+import org.example.util.ConnectionManager;
+import org.example.util.IOUtil;
 import org.example.util.MealHandler;
 import java.util.List;
-import java.util.Scanner;
 
 public class MealController {
 
-    private final static Datasource MEALS_DB = new MealsDB(MealDAOImpl.getInstance());
-
-    private final Scanner scanner;
-
+    private final static Datasource MEALS_DB = new MealsDatabase(MealsDatabaseDAOImpl.getInstance());
     private boolean isFinished;
     private ApplicationState state;
 
     public MealController() {
-        this.scanner = new Scanner(System.in);
         this.isFinished = false;
         this.state = ApplicationState.STATE_START;
     }
-
     public void run() {
 
         while (!this.isFinished) {
@@ -67,19 +62,19 @@ public class MealController {
     private void start() {
 
         System.out.println("What would you like to do (add, show, plan, save, exit)?");
-        this.state = ApplicationState.getState(this.scanner.nextLine());
+        this.state = ApplicationState.getState(IOUtil.writeInput());
     }
 
     private void addMeal() {
 
         System.out.println("Which meal do you want to add (breakfast, lunch, dinner)?");
-        String category = MealHandler.getMealCategory(this.scanner);
+        String category = MealHandler.getMealCategory();
 
         System.out.println("Input the meal's name:");
-        String mealName = MealHandler.getMealType(this.scanner);
+        String mealName = MealHandler.getMealType();
 
         System.out.println("Input the ingredients:");
-        String[] ingredients = MealHandler.getIngredients(this.scanner);
+        String[] ingredients = MealHandler.getIngredients();
 
         MEALS_DB.insertMeal(new Meal(category, mealName, ingredients));
         System.out.println("The meal has been added!");
@@ -90,7 +85,7 @@ public class MealController {
     private void show() {
 
         System.out.println("Which category do you want to print (breakfast, lunch, dinner)?");
-        String mealCategory = MealHandler.getMealCategory(this.scanner);
+        String mealCategory = MealHandler.getMealCategory();
         MealHandler.printMealsByCategory(MEALS_DB.listByCategory(mealCategory));
 
         this.state = ApplicationState.STATE_START;
@@ -98,7 +93,7 @@ public class MealController {
 
     private void plan() {
 
-        List<MealDayPlan> mealPlan = MealHandler.addMealsTooPlan(MEALS_DB.listAll(), this.scanner);
+        List<MealDayPlan> mealPlan = MealHandler.addMealsTooPlan(MEALS_DB.listAll());
         MEALS_DB.createPlan(mealPlan);
         MealHandler.printMealPlan(mealPlan);
 
@@ -112,7 +107,7 @@ public class MealController {
         if (!ingredientList.isEmpty()) {
 
             System.out.println("Input a filename:");
-            String fileName = this.scanner.nextLine();
+            String fileName = IOUtil.writeInput();
             MealHandler.writeToFile(fileName, ingredientList);
 
         } else {
@@ -125,7 +120,7 @@ public class MealController {
 
     private void exit() {
 
-        this.scanner.close();
+        IOUtil.closeInput();
         this.isFinished = true;
         ConnectionManager.closeConnection();
         System.out.println("Bye!");

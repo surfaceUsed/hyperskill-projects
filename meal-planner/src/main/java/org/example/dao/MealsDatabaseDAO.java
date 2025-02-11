@@ -1,10 +1,10 @@
-package org.example.datasource.dao;
+package org.example.dao;
 
 import org.example.entity.Meal;
 import org.example.entity.MealDayPlan;
 import java.util.List;
 
-public interface MealDAO {
+public interface MealsDatabaseDAO {
 
     void insertMeal(Meal meal);
 

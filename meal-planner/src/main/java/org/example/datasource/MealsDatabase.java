@@ -1,9 +1,9 @@
 package org.example.datasource;
 
-import org.example.datasource.dao.MealDAO;
-import org.example.datasource.dataUtil.ConnectionManager;
+import org.example.dao.MealsDatabaseDAO;
 import org.example.entity.Meal;
 import org.example.entity.MealDayPlan;
+import org.example.util.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,10 +15,8 @@ import java.util.List;
  * if they don't already exist.
  *
  * To perform any operations on the database, the class has its own instance of a data access object "mealDao".
- *
  */
-
-public class MealsDB implements Datasource {
+public class MealsDatabase implements Datasource {
 
     private static final Connection CONNECTION = ConnectionManager.getConnection();
 
@@ -35,13 +33,13 @@ public class MealsDB implements Datasource {
     private final static String CREATE_TABLE_PLAN = CREATE_NEW_TABLE + "plan (day VARCHAR(15), meal_name VARCHAR(25), " +
             "meal_category VARCHAR(15), meal_id INTEGER, FOREIGN KEY (meal_id) REFERENCES meals(meal_id))";
 
-    private final MealDAO mealDAO;
+    private final MealsDatabaseDAO mealDAO;
 
     static {
         loadDB();
     }
 
-    public MealsDB(MealDAO mealDAO) {
+    public MealsDatabase(MealsDatabaseDAO mealDAO) {
         this.mealDAO = mealDAO;
     }
 
@@ -89,7 +87,6 @@ public class MealsDB implements Datasource {
     }
 
     private static void loadDB() {
-
         runQuery(CREATE_TABLE_MEALS);
         runQuery(CREATE_TABLE_INGREDIENTS);
         runQuery(CREATE_TABLE_PLAN);

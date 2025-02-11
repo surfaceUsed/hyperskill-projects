@@ -7,32 +7,36 @@ import org.example.enums.MealCategory;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MealHandler {
 
     private static final String SHOPPING_LIST_DIRECTORY = "shoppingList";
+
     private MealHandler() {
     }
 
-    public static String getMealCategory(Scanner scanner) {
+    public static String getMealCategory() {
 
-        String input = scanner.nextLine();
+        String input = IOUtil.writeInput();
         MealCategory category;
 
         do {
 
             while (!isFoodInputValid(input)) {
                 System.out.println("Wrong format. Use letters only!");
-                input = scanner.nextLine();
+                input = IOUtil.writeInput();
             }
 
             category = MealCategory.getMealCategory(input);
             if (category == MealCategory.INVALID_MEAL) {
                 System.out.println("Wrong meal category! Choose from: breakfast, lunch, dinner.");
-                input = scanner.nextLine();
+                input = IOUtil.writeInput();
                 category = MealCategory.getMealCategory(input);
             }
 
@@ -41,21 +45,21 @@ public class MealHandler {
         return input;
     }
 
-    public static String getMealType(Scanner scanner) {
+    public static String getMealType() {
 
-        String input = scanner.nextLine();
+        String input = IOUtil.writeInput();
 
         while (!isFoodInputValid(input)) {
             System.out.println("Wrong format. Use letters only!");
-            input = scanner.nextLine();
+            input = IOUtil.writeInput();
         }
 
         return input;
     }
 
-    public static String[] getIngredients(Scanner scanner) {
+    public static String[] getIngredients() {
 
-        String ingredientsAsText = scanner.nextLine();
+        String ingredientsAsText = IOUtil.writeInput();
         String[] splitIngredients;
         boolean isValid;
 
@@ -67,7 +71,7 @@ public class MealHandler {
             for (String ingredient : splitIngredients) {
                 if (!isFoodInputValid(ingredient)) {
                     System.out.println("Wrong format. Use letters only!");
-                    ingredientsAsText = scanner.nextLine();
+                    ingredientsAsText = IOUtil.writeInput();
                     isValid = false;
                     break;
                 }
@@ -102,7 +106,7 @@ public class MealHandler {
         }
     }
 
-    public static List<MealDayPlan> addMealsTooPlan(List<Meal> mealList, Scanner scanner) {
+    public static List<MealDayPlan> addMealsTooPlan(List<Meal> mealList) {
 
         List<MealDayPlan> mealPlanner = new ArrayList<>();
 
@@ -118,7 +122,7 @@ public class MealHandler {
                     List<Meal> orderedMealList = sortMealsByCategory(mealList, mealCategory);
                     printMeals(orderedMealList);
                     System.out.println("Choose the " + mealCategory + " for " + dayName + " from the list above:");
-                    Meal input = getMeal(orderedMealList, scanner);
+                    Meal input = getMeal(orderedMealList);
                     mealPlanner.add(new MealDayPlan(dayName, input));
                 }
 
@@ -150,11 +154,11 @@ public class MealHandler {
         }
     }
 
-    private static Meal getMeal(List<Meal> mealList, Scanner scanner) {
+    private static Meal getMeal(List<Meal> mealList) {
 
         do {
 
-            String input = scanner.nextLine();
+            String input = IOUtil.writeInput();
 
             for (Meal meal : mealList) {
                 String mealName = meal.getMealName();
