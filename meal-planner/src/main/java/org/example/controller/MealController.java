@@ -8,7 +8,7 @@ import org.example.entity.MealDayPlan;
 import org.example.enums.ApplicationState;
 import org.example.util.ConnectionManager;
 import org.example.util.IOUtil;
-import org.example.util.MealHandler;
+import org.example.model.MealHandler;
 import java.util.List;
 
 public class MealController {
@@ -106,9 +106,9 @@ public class MealController {
 
         if (!ingredientList.isEmpty()) {
 
-            System.out.println("Input a filename:");
-            String fileName = IOUtil.writeInput();
-            MealHandler.writeToFile(fileName, ingredientList);
+            System.out.println("Input path to file you want to save the list to:");
+            String filePath = IOUtil.writeInput();
+            MealHandler.writeToFile(filePath, ingredientList);
 
         } else {
 

@@ -1,12 +1,11 @@
-package org.example.util;
+package org.example.model;
 
 import org.example.entity.Meal;
 import org.example.entity.MealDayPlan;
 import org.example.enums.DaysOfTheWeek;
 import org.example.enums.MealCategory;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import org.example.util.IOUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +17,7 @@ public class MealHandler {
 
     private static final String SHOPPING_LIST_DIRECTORY = "shoppingList";
 
-    private MealHandler() {
-    }
+    private MealHandler() {}
 
     public static String getMealCategory() {
 
@@ -241,17 +239,8 @@ public class MealHandler {
         return ingredientMapper;
     }
 
-    public static void writeToFile(String fileName, String input) {
+    public static void writeToFile(String filePath, String input) {
 
-        File file = new File(SHOPPING_LIST_DIRECTORY, fileName);
-        try (FileWriter writer = new FileWriter(file)) {
-
-            writer.write(input);
-            System.out.println("Saved!");
-
-        } catch (IOException e) {
-
-            System.out.println("Error writing to file " + "\"" + fileName + "\": " + e.getMessage());
-        }
+        IOUtil.writeToFile(filePath, input);
     }
 }
