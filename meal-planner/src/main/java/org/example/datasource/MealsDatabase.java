@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * Class that initialises the database "meals.db", and creates three separate tables (meals, ingredients, plan)
+ * Class that initialises the database and creates three separate tables (meals, ingredients, plan)
  * if they don't already exist.
  *
  * To perform any operations on the database, the class has its own instance of a data access object "mealDao".
@@ -43,6 +43,12 @@ public class MealsDatabase implements Datasource {
         this.mealDAO = mealDAO;
     }
 
+    private static void loadDB() {
+        runQuery(CREATE_TABLE_MEALS);
+        runQuery(CREATE_TABLE_INGREDIENTS);
+        runQuery(CREATE_TABLE_PLAN);
+    }
+
     private static void runQuery(String query) {
 
         try (PreparedStatement prep = CONNECTION.prepareStatement(query)) {
@@ -61,8 +67,7 @@ public class MealsDatabase implements Datasource {
 
     @Override
     public void createPlan(List<MealDayPlan> mealPlan) {
-        final String clearTablePlan = "plan";
-        clearTable(clearTablePlan);
+        runQuery(String.format(CLEAR_TABLE, "plan"));
         this.mealDAO.createPlan(mealPlan);
     }
 
@@ -79,16 +84,5 @@ public class MealsDatabase implements Datasource {
     @Override
     public List<Meal> listByCategory(String category) {
         return this.mealDAO.listMealByCategory(category);
-    }
-
-    @Override
-    public void clearTable(String tableName) {
-        runQuery(String.format(CLEAR_TABLE, tableName));
-    }
-
-    private static void loadDB() {
-        runQuery(CREATE_TABLE_MEALS);
-        runQuery(CREATE_TABLE_INGREDIENTS);
-        runQuery(CREATE_TABLE_PLAN);
     }
 }

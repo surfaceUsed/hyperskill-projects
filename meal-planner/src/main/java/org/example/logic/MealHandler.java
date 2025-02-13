@@ -1,11 +1,10 @@
-package org.example.model;
+package org.example.logic;
 
 import org.example.entity.Meal;
 import org.example.entity.MealDayPlan;
 import org.example.enums.DaysOfTheWeek;
 import org.example.enums.MealCategory;
 import org.example.util.IOUtil;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,8 +13,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MealHandler {
-
-    private static final String SHOPPING_LIST_DIRECTORY = "shoppingList";
 
     private MealHandler() {}
 
@@ -37,9 +34,7 @@ public class MealHandler {
                 input = IOUtil.writeInput();
                 category = MealCategory.getMealCategory(input);
             }
-
         } while (category == MealCategory.INVALID_MEAL || !isFoodInputValid(input));
-
         return input;
     }
 
@@ -51,7 +46,6 @@ public class MealHandler {
             System.out.println("Wrong format. Use letters only!");
             input = IOUtil.writeInput();
         }
-
         return input;
     }
 
@@ -74,9 +68,7 @@ public class MealHandler {
                     break;
                 }
             }
-
         } while (!isValid);
-
         return splitIngredients;
     }
 
@@ -98,7 +90,6 @@ public class MealHandler {
                 System.out.println("ingredients:\n" +
                         meal.printIngredients() + "\n");
             }
-
         } else {
             System.out.println("No meals found.");
         }
@@ -109,10 +100,8 @@ public class MealHandler {
         List<MealDayPlan> mealPlanner = new ArrayList<>();
 
         for (DaysOfTheWeek day : DaysOfTheWeek.values()) {
-
             String dayName = day.getDay();
             System.out.println(dayName);
-
             for (MealCategory category : MealCategory.values()) {
 
                 if (category != MealCategory.INVALID_MEAL) {
@@ -121,14 +110,14 @@ public class MealHandler {
                     printMeals(orderedMealList);
                     System.out.println("Choose the " + mealCategory + " for " + dayName + " from the list above:");
                     Meal input = getMeal(orderedMealList);
-                    mealPlanner.add(new MealDayPlan(dayName, input));
+                    mealPlanner.add(
+                            new MealDayPlan(
+                                    dayName,
+                                    input));
                 }
-
             }
-
             System.out.println("Yeah! We planned the meals for " + dayName + ".");
         }
-
         return mealPlanner;
     }
 
@@ -141,12 +130,10 @@ public class MealHandler {
                 mealsByCategory.add(meal);
             }
         }
-
         return mealsByCategory;
     }
 
     private static void printMeals(List<Meal> mealList) {
-
         for (Meal meal : mealList) {
             System.out.println(meal.getMealName());
         }
@@ -164,9 +151,7 @@ public class MealHandler {
                     return meal;
                 }
             }
-
             System.out.println("This meal doesn’t exist. Choose a meal from the list above.");
-
         } while (true);
     }
 
@@ -188,7 +173,6 @@ public class MealHandler {
                     System.out.println(mealCategory + ": " + mealName);
                 }
             }
-
             System.out.println();
         }
     }
@@ -208,10 +192,8 @@ public class MealHandler {
             } else {
                 sb.append(ingredient);
             }
-
             sb.append("\n");
         }
-
         return sb.toString();
     }
 
@@ -228,19 +210,15 @@ public class MealHandler {
                 if (ingredientMapper.containsKey(ingredient)) {
                     int value = ingredientMapper.get(ingredient);
                     ingredientMapper.put(ingredient, value + 1);
-
                 } else {
-
                     ingredientMapper.put(ingredient, initialValue);
                 }
             }
         }
-
         return ingredientMapper;
     }
 
     public static void writeToFile(String filePath, String input) {
-
         IOUtil.writeToFile(filePath, input);
     }
 }

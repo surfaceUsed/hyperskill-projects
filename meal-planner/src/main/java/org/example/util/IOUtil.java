@@ -20,10 +20,8 @@ public class IOUtil {
     public static void writeToFile(String filePath, String input) {
         File file = new File(filePath);
         try (FileWriter writer = new FileWriter(file)) {
-
             writer.write(input);
             System.out.println("Saved!");
-
         } catch (IOException e) {
             System.out.println("Error writing to file " + "\"" + file.getName() + "\": " + e.getMessage());
         }

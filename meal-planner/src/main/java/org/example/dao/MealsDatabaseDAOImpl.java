@@ -14,9 +14,8 @@ import java.util.List;
 
 /**
  *
- * Data access object for performing queries to the database "meals.db" to insert, get, update and list
+ * Data access object for performing queries to the database to insert, get, update and list
  * table entries.
- *
  */
 
 public class MealsDatabaseDAOImpl implements MealsDatabaseDAO {
@@ -56,7 +55,6 @@ public class MealsDatabaseDAOImpl implements MealsDatabaseDAO {
             prep.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("insertIntoMealTable()");
             System.out.println(e.getMessage());
         }
     }
@@ -75,7 +73,6 @@ public class MealsDatabaseDAOImpl implements MealsDatabaseDAO {
             prep.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("insertIntoIngredientTable()");
             System.out.println(e.getMessage());
         }
     }
@@ -187,7 +184,6 @@ public class MealsDatabaseDAOImpl implements MealsDatabaseDAO {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return ingredientsList;
     }
 
@@ -211,14 +207,16 @@ public class MealsDatabaseDAOImpl implements MealsDatabaseDAO {
                     String mealName = res.getString("meal");
                     int mealID = res.getInt("meal_id");
                     String[] ingredientList = listIngredients(mealID);
-                    meals.add(new Meal(mealCategory, mealName, ingredientList, mealID));
+                    meals.add(
+                            new Meal(
+                                    mealCategory,
+                                    mealName,
+                                    ingredientList,
+                                    mealID));
                 }
-
             }
 
         } catch (SQLException e) {
-
-            System.out.println("listMealByCategory()");
             System.out.println(e.getMessage());
         }
 

@@ -1,6 +1,6 @@
 package org.example.util;
 
-import org.example.model.DatabaseProperties;
+import org.example.logic.DatabaseProperties;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,12 +15,11 @@ public final class ConnectionManager {
         try {
 
             CONNECTION = DriverManager.getConnection(databaseProperties.getDatabaseUrl(),
-                    databaseProperties.getUserName(),
+                    databaseProperties.getUsername(),
                     databaseProperties.getPassword());
 
         } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
+            throw new RuntimeException("Failed to create Connection object: " + e.getMessage());
         }
     }
 

@@ -19,14 +19,5 @@ public enum DaysOfTheWeek {
     public String getDay() {
         return this.day;
     }
-
-    public static DaysOfTheWeek getDayOfWeek(String dayName) {
-        for (DaysOfTheWeek day : DaysOfTheWeek.values()) {
-            if (day.getDay().equals(dayName)) {
-                return day;
-            }
-        }
-        return null;
-    }
 }
 

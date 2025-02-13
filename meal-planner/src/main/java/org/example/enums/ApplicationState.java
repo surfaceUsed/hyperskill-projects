@@ -8,7 +8,7 @@ public enum ApplicationState {
     STATE_PLAN("plan"),
     STATE_SAVE("save"),
     STATE_EXIT("exit"),
-    STATE_INVALID("invalid inut");
+    STATE_INVALID("invalid input");
 
     private final String input;
 

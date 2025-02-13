@@ -15,6 +15,4 @@ public interface Datasource {
     List<Meal> listAll();
 
     List<Meal> listByCategory(String category);
-
-    void clearTable(String tableName);
 }

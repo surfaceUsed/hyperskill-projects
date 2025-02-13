@@ -1,9 +1,9 @@
-package org.example.model;
+package org.example.logic;
 
 public class DatabaseProperties {
 
     private final String databaseUrl;
-    private final String userName;
+    private final String username;
     private final String password;
 
     public DatabaseProperties(String[] properties) {
@@ -13,7 +13,7 @@ public class DatabaseProperties {
         }
 
         this.databaseUrl = properties[0];
-        this.userName = properties[1];
+        this.username = properties[1];
         this.password = properties[2];
     }
 
@@ -21,8 +21,8 @@ public class DatabaseProperties {
         return databaseUrl;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {

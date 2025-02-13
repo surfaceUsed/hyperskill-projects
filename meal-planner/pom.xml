@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>MealPlanner</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>meal-planner</artifactId>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
@@ -25,5 +25,33 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <!-- Plugins for running with Maven -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>20</source>
+                    <target>20</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.example.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

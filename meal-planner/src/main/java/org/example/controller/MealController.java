@@ -8,7 +8,7 @@ import org.example.entity.MealDayPlan;
 import org.example.enums.ApplicationState;
 import org.example.util.ConnectionManager;
 import org.example.util.IOUtil;
-import org.example.model.MealHandler;
+import org.example.logic.MealHandler;
 import java.util.List;
 
 public class MealController {
