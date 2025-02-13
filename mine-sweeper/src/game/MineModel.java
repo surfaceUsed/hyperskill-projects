@@ -1,7 +1,11 @@
-package org.example.game;
+package game;
 
 import java.util.Random;
 
+/**
+ * The MineModel class represents the underlying logic for a Minesweeper game.
+ * It maintains the game board, mine placement, and mine threat calculations.
+ */
 public class MineModel {
 
     static final char SAFE_CELL = '.';
@@ -12,7 +16,7 @@ public class MineModel {
     private static final int ROWS = 9;
     private static final int COLUMNS = 9;
 
-    private final char[][] gameBoard = new char[ROWS][COLUMNS]; // Stores all game characters (X.*/).
+    private final char[][] gameBoard = new char[ROWS][COLUMNS]; // Stores all game characters [X.*/].
     private final char[][] mineBoard = new char[ROWS][COLUMNS]; // Separate board that holds all the mine placements.
     private final int[][] countMineThreat = new int[ROWS][COLUMNS]; // Separate board that holds all the mine-counter values.
 
@@ -42,9 +46,12 @@ public class MineModel {
         this.gameBoard[row][col] = input;
     }
 
-    // Creates a mine board that is used to check every gameplay up against.
-    // Since a player has to be able to make the first move without stepping on a mine, we need to make sure that
-    // the first indexes chosen are safe.
+    /**
+     * Creates a mine board ensuring that the first move does not land on a mine.
+     * @param row Initial safe row.
+     * @param col Initial safe column.
+     * @param numberOfMines Number of mines to place.
+     */
     void createMineBoard(int row, int col, int numberOfMines) {
 
         Random random = new Random();
@@ -62,9 +69,10 @@ public class MineModel {
         }
     }
 
-    // A separate game board that holds all the values for mine-threats in the area.
+    /**
+     * Creates the board that stores the number of mines around each cell.
+     */
     void createCountBoard() {
-
         for (int i = 0; i < this.mineBoard.length; i++) {
             for (int j = 0; j < this.mineBoard[i].length; j++) {
                 if (this.mineBoard[i][j] != MINE) {
@@ -74,9 +82,11 @@ public class MineModel {
         }
     }
 
-    // Method counts the number of mines that are in the area for each index in the table, and saves the values
-    // in the "countMineThreat"-table. Like the "mineBoard"-table; this table is also used to compare up
-    // against after every single play.
+    /**
+     * Calculates the number of mines surrounding a given cell.
+     * @param row Row index.
+     * @param col Column index.
+     */
     private void calculateMineThreat(int row, int col) {
 
         int counter = placeCounter(row - 1, col - 1) + placeCounter(row - 1, col) +
@@ -91,7 +101,7 @@ public class MineModel {
             if (this.mineBoard[row][col] == MINE) {
                 return 1;
             }
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException ignored) {
             // coordinates out of bounds.
         }
         return 0;
@@ -115,20 +125,14 @@ public class MineModel {
         }
     }
 
-    // A recursive method that frees up every cell that is free, and stops when there are no more empty cells to free
-    // up (when it reaches the end of the gameboard (top, bottom, sides) or when it reaches a hidden number that
-    // indicates there is a mine lying around).
+    /**
+     * Recursively reveals empty cells and their surroundings.
+     * @param row Row index.
+     * @param col Column index.
+     */
     private void revealEmptyCell(int row, int col) {
 
-        if (isOutOfBounds(row, col)) {
-            return;
-        }
-
-        if (isFree(row, col)) {
-            return;
-        }
-
-        if (isMarker(row, col)) {
+        if (isOutOfBounds(row, col) || isFree(row, col) || isMarker(row, col)) {
             return;
         }
 
@@ -147,7 +151,6 @@ public class MineModel {
             }
 
         } else {
-
             updateGameBoard(row, col, Character.forDigit(this.countMineThreat[row][col], 10));
         }
     }
@@ -160,9 +163,12 @@ public class MineModel {
         return (this.gameBoard[row][col] == FREE_CELL);
     }
 
-    // Method checks if the value on the given index is a marker (*). It will only stay a marker if there is a mine
-    // under the same position. If it's marking a number or a free cell, it will be cleared, and replaced by either
-    // of the two.
+    /**
+     *
+     * Method checks if the value on the given index is a marker (*). It will only stay a marker if there is a mine
+     * under the same position. If it's marking a number or a free cell, it will be cleared, and replaced by either
+     * of the two.
+     */
     private boolean isMarker(int row, int col) {
 
         if (this.gameBoard[row][col] == MARKER) {

@@ -1,10 +1,8 @@
-package org.example.game;
+package game;
 
-class MineView {
+public class MineView {
 
-    MineView() {
-
-    }
+    MineView() {}
 
     void printGameBoard(char[][] gameBoard) {
         System.out.println(" | 1 2 3 4 5 6 7 8 9 |");
@@ -36,5 +34,16 @@ class MineView {
             System.out.println();
         }
         System.out.println("-| - - - - - - - - - |");
+    }
+
+    void gameInstructions() {
+        System.out.println();
+        System.out.println("To make a move, enter the coordinates followed by the type of action.");
+        System.out.println("First, enter the row number (y-coordinate), then the column number (x-coordinate).");
+        System.out.println("After the coordinates, specify the action:");
+        System.out.println("\n  - Type 'mine' to mark a potential mine.");
+        System.out.println("  - Type 'free' to uncover the cell.\n");
+        System.out.println("Example: '3 5 free' will uncover the cell at row 3, column 5.");
+        System.out.print("Set/unset mine marks or claim a cell as free (y-coordinate x-coordinate mine/free): ");
     }
 }

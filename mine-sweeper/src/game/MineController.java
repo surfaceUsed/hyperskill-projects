@@ -1,11 +1,12 @@
-package org.example.game;
+package game;
 
 import java.util.Scanner;
 
 public class MineController {
 
-    private final static String STATE_FREE = "free";
-    private final static String STATE_MINE = "mine";
+    private static final String STATE_FREE = "free";
+    private static final String STATE_MINE = "mine";
+    private static final String STATE_INVALID = "invalid";
 
     private final MineModel model;
     private final MineView view;
@@ -31,12 +32,15 @@ public class MineController {
         this.numberOfMineMarkers = 0;
     }
 
+    /**
+     * Starts the game loop and processes player input.
+     */
     public void playGame() {
 
-        this.view.printGameBoard(this.model.getGameBoard());
-        System.out.print("Set/unset mines marks or claim a cell as free: ");
+        this.view.gameInstructions();
         String[] input = this.scanner.nextLine().split(" ");
         parseInput(input);
+        //this.view.printGameBoard(this.model.getGameBoard());
 
         while (!isFinished) {
 
@@ -50,10 +54,13 @@ public class MineController {
                     placeMineMarker(this.rowIndex, this.columnIndex);
                     break;
 
+                case STATE_INVALID:
+                    System.out.println("Try again.");
+                    break;
             }
 
             if (!isFinished) {
-                System.out.print("Set/unset mines marks or claim a cell as free: ");
+                System.out.print("Set/unset mine marks, or claim a cell as free: ");
                 input = this.scanner.nextLine().split(" ");
                 parseInput(input);
             }
@@ -61,17 +68,42 @@ public class MineController {
         this.scanner.close();
     }
 
+    /**
+     * Parses user input and determines action type.
+     * @param input Array containing row, column, and action.
+     */
     private void parseInput(String[] input) {
-        this.rowIndex = Integer.parseInt(input[0]) - 1;
-        this.columnIndex = Integer.parseInt(input[1]) - 1;
-        this.action = input[2];
+        if (input.length != 3) {
+            System.out.println("\nInput malformed. Need to be in the format \"'row' 'column' 'action\".\n");
+            this.action = STATE_INVALID;
+        } else {
+
+            try {
+                this.rowIndex = Integer.parseInt(input[0]) - 1;
+                this.columnIndex = Integer.parseInt(input[1]) - 1;
+            } catch (NumberFormatException ignored) {
+                System.out.println("\nInvalid coordinate input!\n");
+                this.action = STATE_INVALID;
+                return;
+            }
+
+            String action = input[2];
+            if (!action.equals(STATE_FREE) && !action.equals(STATE_MINE)) {
+                System.out.println("\n" + action + " is not a valid action.\n");
+                this.action = STATE_INVALID;
+                return;
+            }
+            this.action = input[2];
+        }
     }
 
-    // Handles freeing up cells.
+    /**
+     * Handles revealing a cell.
+     * @param row Row index of the cell.
+     * @param col Column index of the cell.
+     */
     private void placeFreeMarker(int row, int col) {
-
-        // If it's the first play the player makes, the mine- and counter-tables are created.
-        // After that the gameBoard gets updated.
+        // If it's the first move, generate the minefield ensuring the first play is safe
         if (isFirstPlay) {
             this.model.createMineBoard(row, col, this.numberOfMines);
             this.model.createCountBoard();
@@ -94,9 +126,11 @@ public class MineController {
         }
     }
 
-    // Method keeps track of mine markers. If every mine has been marked, the game is finished, and the player wins,
-    // but if there are more markers than there are mines, the player needs to remove some markers, or keep trying to
-    // free up space until there are only mines left.
+    /**
+     * Handles placing or removing a mine marker.
+     * @param row Row index of the cell.
+     * @param col Column index of the cell.
+     */
     private void placeMineMarker(int row, int col) {
 
         char cell = this.model.getGameBoard()[row][col];
@@ -147,7 +181,6 @@ public class MineController {
                 }
             }
         }
-
         if (this.numberOfMines == counter) {
             isFinished = true;
             System.out.println("Congratulations! You found all the mines!");

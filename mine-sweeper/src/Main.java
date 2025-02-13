@@ -1,10 +1,8 @@
-package org.example;
-
-import org.example.game.MineController;
+import game.MineController;
 
 import java.util.Scanner;
 
-class Main {
+public class Main {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -14,6 +12,5 @@ class Main {
         MineController controller = new MineController(SCANNER.nextInt());
         controller.playGame();
         SCANNER.close();
-
     }
 }
