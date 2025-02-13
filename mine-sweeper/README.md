@@ -88,6 +88,8 @@ mine-sweeper/
 
 - Java 8 or later.
 
+**Installation**
+
 1. Clone the repository.
 
 ```bash
