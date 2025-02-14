@@ -1,124 +1,140 @@
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
-    static final char X = 'X';
-    static final char O = 'O';
     static final int ROWS = 3;
     static final int COLUMNS = 3;
-    static final int PICK_COORDINATES = 2;
-    static char[][] table = new char[ROWS][COLUMNS];
-    static String[] coordinates = new String[PICK_COORDINATES];
+    static final char X = 'X';
+    static final char O = 'O';
+    static final char EMPTY = ' ';
+    static char[][] board = new char[ROWS][COLUMNS];
+    static Scanner scanner = new Scanner(System.in);
+    static boolean xTurn = true; // True = 'X' plays, False = 'O' plays
 
     public static void main(String[] args) {
-
+        initializeBoard();
+        System.out.println(createGrid());
         playGame();
     }
 
-    public static void playGame() {
-        firstInput();
-        secondInput();
-        int result = checkConditions();
-        while (result != -1) {
-            switch (result) {
-                case 1:
-                    System.out.println("You should enter numbers!");
-                    break;
-                case 2:
-                    System.out.println("Coordinates should be from 1 to 3!");
-                    break;
-                case 3:
-                    System.out.println("This cell is occupied! Choose another one!");
-                    break;
-                default:
-                    break;
+    private static void playGame() {
+        while (true) {
+            getUserInput();
+            int result = checkConditions();
+
+            while (result != -1) {
+                switch (result) {
+                    case 1:
+                        System.out.println("You should enter numbers!");
+                        break;
+                    case 2:
+                        System.out.println("Coordinates should be from 1 to 3!");
+                        break;
+                    case 3:
+                        System.out.println("This cell is occupied! Choose another one!");
+                        break;
+                }
+                getUserInput();
+                result = checkConditions();
             }
-            secondInput();
-            result = checkConditions();
+
+            System.out.println(createGrid());
+
+            if (checkWin()) {
+                System.out.println((xTurn ? "X" : "O") + " wins!");
+                break;
+            }
+
+            if (isBoardFull()) {
+                System.out.println("It's a tie!");
+                break;
+            }
+
+            xTurn = !xTurn;
         }
-        placeX();
-        System.out.println(createGrid());
     }
 
-    private static void firstInput() {
-        createTwoDimArray(scanner.nextLine().toCharArray());
-        System.out.println(createGrid());
+    private static void initializeBoard() {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                board[i][j] = EMPTY;
+            }
+        }
     }
 
-    private static void secondInput() {
-        coordinates = scanner.nextLine().split(" ");
+    private static void getUserInput() {
+        System.out.print("Enter row and column (1-3): ");
     }
 
     private static int checkConditions() {
-        if (!isDigit()) {
-            return 1; // You should enter numbers.
+        String input = scanner.nextLine();
+        String[] coordinates = input.split(" ");
+
+        if (coordinates.length != 2) {
+            return 1; // Invalid input format
         }
-        if (!isValidCoordinate()) {
-            return 2; // Coordinates should be from 1 to 3.
+        if (!isDigit(coordinates)) {
+            return 1; // Non-numeric input
         }
-        if (!isEmpty()) {
-            return 3; // This cell is occupied! Choose another one!
+        int row = Integer.parseInt(coordinates[0]) - 1;
+        int col = Integer.parseInt(coordinates[1]) - 1;
+        if (!isValidCoordinate(row, col)) {
+            return 2; // Out-of-bounds coordinates
         }
-        return -1;
+        if (!isEmpty(row, col)) {
+            return 3; // Cell is occupied
+        }
+
+        board[row][col] = xTurn ? X : O; // Store move
+        return -1; // Valid move
     }
 
-    private static void createTwoDimArray(char[] arr) {
-        int index = 0;
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLUMNS; j++) {
-                table[i][j]= arr[index];
-                index++;
-            }
-        }
-    }
-
-    private static String createGrid() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("---------").append("\n");
-        for (int i = 0; i < ROWS; i++) {
-            sb.append("| ");
-            for (int j = 0; j < COLUMNS; j++) {
-                sb.append(table[i][j]).append(" ");
-            }
-            sb.append("|").append("\n");
-        }
-        sb.append("---------").append("\n");
-        return sb.toString();
-    }
-
-    private static boolean isDigit() {
+    private static boolean isDigit(String[] coordinates) {
         try {
-            for (String s : coordinates) {
-                Integer.parseInt(s);
-            }
+            Integer.parseInt(coordinates[0]);
+            Integer.parseInt(coordinates[1]);
         } catch (NumberFormatException e) {
             return false;
         }
         return true;
     }
 
-    private static boolean isValidCoordinate() {
-        for (String s : coordinates) {
-            int numb = Integer.parseInt(s);
-            if (numb < 1 || numb > 3) {
-                return false;
+    private static boolean isValidCoordinate(int row, int col) {
+        return row >= 0 && row < ROWS && col >= 0 && col < COLUMNS;
+    }
+
+    private static boolean isEmpty(int row, int col) {
+        return board[row][col] == EMPTY;
+    }
+
+    private static boolean checkWin() {
+        for (int i = 0; i < ROWS; i++) {
+            if (board[i][0] != EMPTY && board[i][0] == board[i][1] && board[i][1] == board[i][2]) return true; // Rows
+            if (board[0][i] != EMPTY && board[0][i] == board[1][i] && board[1][i] == board[2][i]) return true; // Columns
+        }
+        if (board[0][0] != EMPTY && board[0][0] == board[1][1] && board[1][1] == board[2][2]) return true; // Diagonal \
+        return board[0][2] != EMPTY && board[0][2] == board[1][1] && board[1][1] == board[2][0]; // Diagonal /
+    }
+
+    private static boolean isBoardFull() {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                if (board[i][j] == EMPTY) return false;
             }
         }
         return true;
     }
 
-    private static boolean isEmpty() {
-        int xCoordinate = Integer.parseInt(coordinates[0]) - 1;
-        int yCoordinate = Integer.parseInt(coordinates[1]) - 1;
-        boolean isX = table[xCoordinate][yCoordinate] == X;
-        boolean isY = table[xCoordinate][yCoordinate] == O;
-        return !isX && !isY;
+    private static String createGrid() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("---------\n");
+        for (int i = 0; i < ROWS; i++) {
+            sb.append("| ");
+            for (int j = 0; j < COLUMNS; j++) {
+                sb.append(board[i][j]).append(" ");
+            }
+            sb.append("|\n");
+        }
+        sb.append("---------\n");
+        return sb.toString();
     }
-
-    private static void placeX() {
-        int xCoordinate = Integer.parseInt(coordinates[0]) - 1;
-        int yCoordinate = Integer.parseInt(coordinates[1]) - 1;
-        table[xCoordinate][yCoordinate] = X;
-    }
-
 }
