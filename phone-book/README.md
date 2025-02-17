@@ -303,6 +303,8 @@ Searching time: 0 min. 0 sec. 0 ms.
 
 - In the future, make it possible for the user to use their
 own phone book and search file.
+- On larger datasets linear searching will prove to be more ineffective than
+on smaller sets.
 
 ---
 
