@@ -146,6 +146,12 @@ the text's readability.
 Each test returns an estimated grade level based on the text's structure and linguistic complexity, providing an objective 
 measure of readability for different types of content.
 
+`TestFactory.java`: Factory class responsible for creating specific instances of the
+readability test classes based on a given search keyword.
+
+This pattern helps decouple the instantiation of the readability test instances, allowing 
+for flexible test selection based on user inputs.
+
 ---
 
 ### Running the application
