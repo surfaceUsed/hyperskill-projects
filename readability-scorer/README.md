@@ -30,7 +30,7 @@ the text.
 The application analyzes a text file based on the following criteria:
 
 1. **Total amount of words:**
-   - Words are split by spaces, sentence-ending punctuation (`.`, `!`, `?`), and other whitespace.
+   - Words are split by spaces, punctuation (`.`, `!`, `?`), and other whitespace.
    - Hyphenated words (e.g., `"self-esteem"`) are not split and are treated as a single word.
 
 2. **Total amount of sentences:**
