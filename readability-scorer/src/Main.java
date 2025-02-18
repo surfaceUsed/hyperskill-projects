@@ -8,7 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader("data/text.txt"))) {
+        // path to test file: data/text.txt
+
+        try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
             String line;
             StringBuilder sb = new StringBuilder();
             while ((line = br.readLine()) != null) {
