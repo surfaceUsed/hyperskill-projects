@@ -5,7 +5,7 @@ public enum Inputs {
     FIND_PERSON(1),
     LIST_ALL(2),
     EXIT(0),
-    INVALID_VALUE(3);
+    INVALID_VALUE(-1);
 
     private final int value;
 

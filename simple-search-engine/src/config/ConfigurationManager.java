@@ -18,6 +18,7 @@ public class ConfigurationManager {
 
     private ConfigurationManager() {}
 
+    // A file needs to be loaded before an instance is called.
     public static ConfigurationManager getInstance() {
         if (loadFile == null) {
             throw new FileParserException("No file to read from.");
@@ -36,6 +37,7 @@ public class ConfigurationManager {
         }
     }
 
+    // Lazy init.
     public List<String> getFileLinesAsList() {
         if (fileLines == null) {
             fileLines = loadFileAsList();
@@ -43,6 +45,7 @@ public class ConfigurationManager {
         return fileLines;
     }
 
+    // Lazy init.
     public Map<String, List<Integer>> getInvertedIndex() {
         if (invertedIndex == null) {
             invertedIndex = loadInvertedIndex();

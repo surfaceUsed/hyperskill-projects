@@ -45,17 +45,27 @@ public class Controller {
         }
     }
 
+    /**
+     *
+     * User chooses strategy (ALL, ANY, NONE), and enters a search query.
+     */
     private void findPerson() {
 
         System.out.println("Select a matching strategy: ALL, ANY, NONE");
         String queryStrategy = this.scanner.nextLine().toLowerCase();
+        System.out.println();
 
         System.out.println("Enter a name or email to search all suitable people.");
         String query = this.scanner.nextLine().toLowerCase();
+        System.out.println();
 
         this.searcher.queryIndex(queryStrategy, query);
     }
 
+    /**
+     *
+     * Prints all the entries from the text file.
+     */
     private void listAll() {
         System.out.println("=== List of people ===");
         this.searcher.printList();
@@ -64,7 +74,7 @@ public class Controller {
     private void exit() {
         isFinish = true;
         scanner.close();
-        System.out.println("Bye!");
+        System.out.println("\nBye!");
     }
 
     private void menu() {

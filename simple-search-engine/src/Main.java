@@ -7,9 +7,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ConfigurationManager.loadFile(new File("data/data.txt"));
+        // test file path: "data/data.txt".
+
+        ConfigurationManager.loadFile(new File(args[0]));
 
         new Controller().run();
-
     }
 }
