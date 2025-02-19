@@ -16,9 +16,9 @@ through an interactive menu-driven interface.
 
 - **Efficient searching:** uses an **inverted index** for quick look-ups.
 - **Multiple search strategies:**
-   1. **ALL:** matches results containing all search keys.
-   2. **ANY:** matches results containing at least one of the search keys.
-   3. **NONE:** excludes results that contain the search keys.
+1. **ALL:** matches results containing all search keys.
+2. **ANY:** matches results containing at least one of the search keys.
+3. **NONE:** excludes results that contain the search keys.
 - **Menu-driven interface:** Simple command-line interface to serach, view results and exit the application.
 - **case-insensitive search:** finds matches regardless of letetr casings.
 
