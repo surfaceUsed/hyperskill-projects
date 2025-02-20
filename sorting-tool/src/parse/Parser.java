@@ -1,4 +1,4 @@
-package org.example.parse;
+package parse;
 
 import java.util.List;
 

@@ -18,7 +18,7 @@ public class ConfigurationManager {
 
     private ConfigurationManager() {}
 
-    // A file needs to be loaded before an instance is called.
+    // A file needs to be loaded before a valid instance can be called.
     public static ConfigurationManager getInstance() {
         if (loadFile == null) {
             throw new FileParserException("No file to read from.");

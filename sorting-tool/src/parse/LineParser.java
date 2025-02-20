@@ -1,7 +1,7 @@
-package org.example.parse;
+package parse;
 
-import org.example.util.sort.SortUtil;
-import org.example.util.statistics.StatisticsUtil;
+import util.sort.SortUtil;
+import util.statistics.StatisticsUtil;
 
 import java.util.*;
 

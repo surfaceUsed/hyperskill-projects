@@ -1,6 +1,6 @@
-package org.example.parse;
+package parse;
 
-import org.example.error.InvalidTypeException;
+import error.InvalidTypeException;
 
 import java.util.HashMap;
 import java.util.Map;

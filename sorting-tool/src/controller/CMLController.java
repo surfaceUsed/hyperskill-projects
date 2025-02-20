@@ -1,9 +1,8 @@
-package org.example.controller;
+package controller;
 
-import org.example.parse.CMLParser;
-import org.example.parse.Parser;
-import org.example.util.io.IOUtil;
-
+import parse.CMLParser;
+import parse.Parser;
+import util.io.IOUtil;
 import java.io.IOException;
 import java.util.List;
 

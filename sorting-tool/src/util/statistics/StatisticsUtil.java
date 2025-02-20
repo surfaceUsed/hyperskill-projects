@@ -1,4 +1,4 @@
-package org.example.util.statistics;
+package util.statistics;
 
 import java.util.List;
 import java.util.Map;

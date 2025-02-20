@@ -1,4 +1,4 @@
-package org.example.util.sort;
+package util.sort;
 
 import java.util.List;
 

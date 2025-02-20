@@ -1,4 +1,4 @@
-package org.example.error;
+package error;
 
 public class InvalidTypeException extends RuntimeException {
 
