@@ -26,6 +26,8 @@ public class CMLController {
 
             } catch (IOException e) {
                 System.out.println("Something went wrong when retrieving data:" + e.getMessage());
+            } finally {
+                IOUtil.closeScanner();
             }
         }
     }

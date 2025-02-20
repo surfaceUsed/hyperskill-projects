@@ -70,9 +70,13 @@ public class LineParser implements DataParser {
                 this.lineList.size(), getSortedLineByCount());
     }
 
-    // TODO: better validation of input. Will always return "formatCountOrder()" if sortType is not "natural".
     @Override
     public String parseData(String sortType) {
-        return (sortType.equals("natural")) ? formatNaturalOrder() : formatCountOrder();
+        SortingType type = SortingType.getType(sortType);
+        return switch (type) {
+            case NATURAL -> formatNaturalOrder();
+            case BY_COUNT -> formatCountOrder();
+            case INVALID -> "Sorting type is not valid";
+        };
     }
 }

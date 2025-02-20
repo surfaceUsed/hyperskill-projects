@@ -1,7 +1,6 @@
 package parse;
 
 import error.InvalidTypeException;
-
 import java.util.HashMap;
 import java.util.Map;
 
