@@ -158,5 +158,83 @@ for sorting sets and lists.
 `util/statistics/StatisticsUtil.java`: Utility class for generating statistical summaries of data. It provides methods for
 displaying elements in their natural order and calculating frequency-based statistics, including occurrence counts and percentages.
 
+---
+
+### Run the application
+
+1. Clone the repository.
+```bash
+git clone https://github.com/surfaceUsed/hyperskill-projects.git
+```
+
+2. Navigate to the project directory.
+```bash
+cd hyperskill-projects/sorting-tool
+```
+
+3. Compile the application.
+```bash
+javac -d out src/Main.java src/controller/CMLController.java src/error/InvalidTypeException.java src/parse/*.java src/util/io/IOUtil.java src/util/sort/*.java src/util/statistics/StatisticsUtil.java
+```
+
+4. Run the application.
+```bash
+java -cp out Main
+```
+
+**Example run**
+
+1. Word data type, reads from file, writes to console and sorts by count:
+
+```bash
+java -cp out Main "-sortingType" "byCount" "-dataType" "word" "-inputFile" "data/test.txt"
+```
+
+```plaintext
+Total words: 23.
+a: 1 time(s), 5%
+application: 1 time(s), 5%
+down: 1 time(s), 5%
+file: 1 time(s), 5%
+for: 1 time(s), 5%
+format: 1 time(s), 5%
+good: 1 time(s), 5%
+java: 1 time(s), 5%
+just: 1 time(s), 5%
+luck: 1 time(s), 5%
+parse: 1 time(s), 5%
+sort: 1 time(s), 5%
+testing: 1 time(s), 5%
+written: 1 time(s), 5%
+you: 1 time(s), 5%
+and: 2 time(s), 10%
+random: 2 time(s), 10%
+text: 2 time(s), 10%
+to: 2 time(s), 10%
+```
+
+2. Word data type, reads from file, writes to console and sorts alphabetically:
+
+```bash
+java -cp out Main "-sortingType" "natural" "-dataType" "word" "-inputFile" "data/test.txt"
+```
+
+```plaintext
+Total words: 23.
+Sorted data: a and and application down file for format good java just luck parse random random sort testing text text to to written you
+```
+
+3. Long datatype, reads from file, writes to console and sorts in ascending order:
+
+```bash
+java -cp out Main "-sortingType" "natural" "-dataType" "long" "-inputFile" "data/testNumbers.txt"
+```
+
+```plaintext
+"a" is not a long. It will be skipped.
+"bv" is not a long. It will be skipped.
+Total numbers: 9.
+Sorted data: -1 1 2 2 2 12 12 37 8871
+```
 
 ---
