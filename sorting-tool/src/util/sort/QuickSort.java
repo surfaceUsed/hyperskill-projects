@@ -2,6 +2,12 @@ package util.sort;
 
 import java.util.List;
 
+/**
+ *
+ * Sorts the given list using the QuickSort algorithm.
+ * The elements in the list **must** implement the Comparable interface,
+ * as comparisons are performed using the compareTo() method.
+ */
 final class QuickSort {
 
     private QuickSort() {}

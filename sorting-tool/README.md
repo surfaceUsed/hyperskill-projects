@@ -147,9 +147,16 @@ sorting method.
 - Reading from a file.
 - Writing to a file.
 
+`util/sort/CountSort.java`: Utility class that sorts data types (`word`, `line`, `long`) based on their frequency of occurence. It 
 
+`util/sort/QuickSort.java`: Utility class that Implements th e**Quick sort** algorithm for sorting lists. It requires that the 
+elements in the list implement the `Comparable` interface, as comparisons are performed using the `compareTo()` method.
 
+`util/sort/SortUtil.java`: Utility class that serves as a gateway to the **Quicksort** and **CountSort** algorithms providing methods 
+for sorting sets and lists.
 
+`util/statistics/StatisticsUtil.java`: Utility class for generating statistical summaries of data. It provides methods for
+displaying elements in their natural order and calculating frequency-based statistics, including occurrence counts and percentages.
 
 
 ---

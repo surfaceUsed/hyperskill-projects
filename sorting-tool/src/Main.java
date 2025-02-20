@@ -4,8 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String[] testInput = new String[]{"-sortingType", "byCount", "-dataType", "word", "-inputFile", "hello, how are you?"};
+        // Test input= String[] testInput = new String[]{"-sortingType", "byCount", "-dataType", "word", "-inputFile", "data/test.txt", "-outputFile", "outputTest.txt"};
 
-        new CMLController(testInput).runParser();
+        new CMLController(args).runParser();
     }
 }
