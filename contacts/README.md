@@ -70,10 +70,9 @@ Invalid inputs prompt an error message and require re-entry.
 file `phonebook.db`). 
 - `src/config/`: Handles configuration and serialization/deserialization logic.
 - `src/contact/`: Contains contact-related classes, including `person` and `organization`.
-- `src/controller/`: Houses the Controller class, which manages user interaction.
+- `src/controller/`: Houses controller classes, which manages user interactions and application states.
 - `src/enums/`: Contains enumerations like State.java.
 - `src/handler/`: Manages different operations such as searching, updating, and listing contacts.
-- `src/manager/`: Handles core logic like current contact- and state management.
 - `src/service/`: Provides additional services for managing contact records.
 - `src/util/`: Contains helper classes for validation and other utilities.
 - `src/view/`: Manages the console-based user interface.
