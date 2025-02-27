@@ -42,6 +42,7 @@ Each folder contains:
 - ❌⭕ **Simple Tic-Tac-Toe Game**  
 
 ### **Java Developer 🚀**
+- ☎️ **Contacts**
 - 🔐 **Encryption/Decryption**  
 - 📂 **File Server**  
 - 📝 **File Type Analyzer**  
