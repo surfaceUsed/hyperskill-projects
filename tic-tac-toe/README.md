@@ -1,6 +1,6 @@
 ---
 
-Tic tac toe application (with AI)
+# Tic tac toe application (with AI)
 
 ---
 
@@ -17,7 +17,7 @@ Users can choose to play agains an AI or another player, or have two AI's battle
 2. Three AI difficulty levels:
    - **Easy:** Moves are chosen randomly.
    - **Medium:** Plays randomly unless it can win in one move or needs to block the opponent from winning.
-   - **Hard:** Uses the **[minimax algorithm]**(https://en.wikipedia.org/wiki/Minimax) to play optimally, never making mistakes.
+   - **Hard:** Uses the [minimax algorithm](https://en.wikipedia.org/wiki/Minimax) to play optimally, never making mistakes.
 3. The game board updates in real time after each move.
 4. Exit the game at any time by typing `exit`.
 
